@@ -16,3 +16,15 @@ script:
   - bundle exec rspec spec
 addons:
   postgresql: "9.3"
+notifications:
+  webhooks:
+    urls:
+      - https://app.opslevel.com/integrations/deploy/2d9d6f76-107c-4861-8387-38ec24a5fc7a
+    on_success: change # default: always
+    on_failure: always # default: always
+    on_start:   change # default: never
+    on_cancel:  always # default: always
+    on_error:   always # default: always
+    template: 
+        - "%{repository_slug} (%{commit}) : %{message}"
+        - "Build details: %{build_url}"
